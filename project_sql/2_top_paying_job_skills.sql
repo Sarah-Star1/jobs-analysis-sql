@@ -7,30 +7,31 @@ Question: What skills are required for the top-paying data analyst jobs?
 
 WITH top_paying_jobs AS (
     SELECT
-        job_postings_fact.job_id,
-        job_postings_fact.job_title,
-        job_postings_fact.salary_year_avg,
-        company_dim.name AS company_name
+        job_id,
+        job_title,
+        salary_year_avg,
+        name AS company_name
     FROM job_postings_fact
-    LEFT JOIN company_dim 
+    LEFT JOIN company_dim
         ON job_postings_fact.company_id = company_dim.company_id
-    WHERE
-        job_postings_fact.job_title_short = 'Data Analyst'
-        AND job_postings_fact.job_location = 'Anywhere'
-        AND job_postings_fact.salary_year_avg IS NOT NULL
-    ORDER BY
-        job_postings_fact.salary_year_avg DESC
+    WHERE job_title_short = 'Data Analyst'
+        AND job_location = 'Anywhere'
+        AND salary_year_avg IS NOT NULL
+    ORDER BY salary_year_avg DESC
     LIMIT 10
 )
-SELECT 
-    top_paying_jobs.*
-    skills
-FROM top_paying_jobs
-INNER JOIN skills_job_dim
-    ON top_paying_jobs.job_id = skills_job_dim.job_id
-INNER JOIN skills_dim
-    ON skills_job_dim.skill_id = skills_dim.skill_id
-ORDER BY top_paying_jobs.salary_year_avg DESC;
+
+SELECT
+    skills,
+    COUNT(*) AS skill_count
+FROM top_paying_jobs tpj
+JOIN skills_job_dim sjd
+    ON tpj.job_id = sjd.job_id
+JOIN skills_dim sd
+    ON sjd.skill_id = sd.skill_id
+GROUP BY skills
+ORDER BY skill_count DESC;
+
 /*
 AT&T is clearly highest
 Pinterest and UCLA Health follow closely
