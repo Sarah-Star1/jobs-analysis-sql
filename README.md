@@ -75,7 +75,7 @@ in 2023:
   Analytics, reflecting varied roles and
   specializations within data analytics.
 
-![top paying roles](assets\visualization.png)
+![top paying roles](assets/visualization.png)
 *Bar graph visualizing the salary for the top ten salaries for Data Analysts, ChatGPT generated this graph from my SQL query results*
 
 ### 2.skills for top paying job
@@ -109,15 +109,15 @@ JOIN skills_dim sd
 GROUP BY skills
 ORDER BY skill_count DESC;
 ```
-![top paying skills](assets\visualization2.png)
+![top paying skills](assets/visualization2.png)
 
 ### 3.In demand skills for data analysis
-![top demanded skills](assets\visualization3.png)
+![top demanded skills](assets/visualization3.png)
 
 ### 4. top paying skills
-![top paying skills](assets\visualization4.png)
+![top paying skills](assets/visualization4.png)
 ### 5. optimal skills
-![optimal skills](assets\visualization5.png)
+![optimal skills](assets/visualization5.png)
 # What I learned
 Throughout this adventure, I've turbocharged my
 SQL toolkit with some serious firepower:
